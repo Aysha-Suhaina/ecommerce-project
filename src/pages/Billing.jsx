@@ -196,6 +196,8 @@ export function Billing() {
             </div>
           </div>
 
+          {/* test message */}
+
           <div className="payment-summary">
             <div className="payment-summary-title">Payment Summary</div>
 
