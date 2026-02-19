@@ -6,36 +6,35 @@ import "./HomePage.css";
 export function HomePage() {
 
   const [products,setProducts] = useState([]);
-  const [cart,setCart] = useState([])
+  const [cart,setCart] = useState([]);
   useEffect(() =>{
-    axios.get('/api/products')
-    .then((response) => {    
-      setProducts(response.data);
+   axios.get('http://localhost:3000/api/products')
+  .then((response) => {
+    setProducts(response.data);
+  });
+
+    axios.get('http://localhost:3000/api/cart-items')
+      .then((response) => {
+      setCart(response.data);
     })
   },[])
-
-  axios.get('/api/cart-items')
-  .then((response) => {
-    setCart(response.data);
-  })
-
 
   return (
     <>
       <title>Home Page</title>
 
-      <Header cart={cart} />
+      <Header cart={cart}/>
       <div className="home-page">
         <div className="products-grid">
           {products.map((product)=>{
             return(
                  <div key={product.id} className="product-container">
-              <div className="product-image-container">
-                <img
-                  className="product-image"
-                  src={product.image}
-                />
-              </div>
+                    <div className="product-image-container">
+                      <img
+                        className="product-image"
+                        src={product.image}
+                      />
+                    </div>
 
               <div className="product-name limit-text-to-2-lines">
                 {product.name}
